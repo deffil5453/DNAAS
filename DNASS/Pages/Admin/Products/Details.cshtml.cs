@@ -19,25 +19,14 @@ namespace DNASS.Pages.Admin.Products
             _context = context;
         }
 
-        public Product Product { get; set; } = default!;
+        public Product Product { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async Task OnGetAsync(Guid id)
         {
-            if (id == null)
+            if (_context.Products != null)
             {
-                return NotFound();
+                Product = await _context.Products.FindAsync(id);
             }
-
-            var product = await _context.Products.FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                Product = product;
-            }
-            return Page();
         }
     }
 }

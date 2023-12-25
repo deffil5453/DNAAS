@@ -23,22 +23,24 @@ namespace DNASS.Pages.Admin.Products
         }
 
         [BindProperty]
-        public EditProductVewModel EditProduct { get; set; } = default!;
-
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public EditProductVewModel EditProduct { get; set; }
+        public async Task<IActionResult> OnGetAsync(Guid id)
         {
             var product = await _context.Products.FindAsync(id);
-            EditProduct = new EditProductVewModel()
+            if (product != null)
             {
-                Id = product.Id,
-                Name = product.Name,
-                Description = product.Description,
-                Cost = product.Cost,
-                Skidka = product.Skidka,
-                ImgUrl = product.ImgUrl,
-                CategoryId = product.CategoryId,
-            };
-            return RedirectToPage();
+                EditProduct = new EditProductVewModel()
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Description = product.Description,
+                    Cost = product.Cost,
+                    Skidka = product.Skidka,
+                    ImgUrl = product.ImgUrl,
+                    CategoryId = product.CategoryId,
+                };
+            }
+            return Page();
         }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to.

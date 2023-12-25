@@ -15,6 +15,7 @@ namespace DNASS.Pages.Admin.Products
     {
         private readonly DNASS.Data.DNASSDbContext _context;
 
+
         public CreateModel(DNASS.Data.DNASSDbContext context)
         {
             _context = context;
@@ -29,7 +30,6 @@ namespace DNASS.Pages.Admin.Products
         [BindProperty]
         public AddProductViewModel AddProduct { get; set; }
 
-        // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -44,8 +44,6 @@ namespace DNASS.Pages.Admin.Products
                 Skidka = AddProduct.Skidka,
                 ImgUrl = AddProduct.ImgUrl,
                 CategoryId = AddProduct.CategoryId,
-                
-
             };
             _context.Products.Add(product);
             await _context.SaveChangesAsync();
