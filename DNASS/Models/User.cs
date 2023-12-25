@@ -9,5 +9,6 @@ namespace DNASS.Models
         [Required] public string FirstName { get; set; }
         [Required] public string MiddleName { get; set; }
         public List<Order> Orders { get; set; }
+        public List<CartItem> CartItems { get; set; }
     }
 }

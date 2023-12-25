@@ -26,6 +26,7 @@ namespace DNASS.Pages.Admin.Products
         public EditProductVewModel EditProduct { get; set; }
         public async Task<IActionResult> OnGetAsync(Guid id)
         {
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
             var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
@@ -56,13 +57,10 @@ namespace DNASS.Pages.Admin.Products
                 productAsync.Skidka = EditProduct.Skidka;
                 productAsync.ImgUrl = EditProduct.ImgUrl;
                 productAsync.CategoryId = EditProduct.CategoryId;
+                ViewData["Message"] = "Товар обновлён";
                 await _context.SaveChangesAsync();
-            }
-        }
 
-        private bool ProductExists(Guid id)
-        {
-            return _context.Products.Any(e => e.Id == id);
+            }
         }
     }
 }

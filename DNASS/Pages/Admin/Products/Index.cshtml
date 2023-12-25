@@ -7,21 +7,27 @@
 {
     <div class="card mb-3 mt-5" style="max-width: 1000px; height:272px; ">
         <div class="row g-5">
-
-            <div class="col">
+            <div class="col-md-4">
                 <img src="~/Image/@item.ImgUrl" class="card-img-top" style="width: 335px; height:270px" />
             </div>
-            <div class="col">
-                <div class="card-body" style="width:400px">
+            <div class="col-md-8">
+                <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group">
-                            <a href="/Admin/Products/Details/@item.Id" class="card-title" style="width: 400px;height:150px;text-decoration:none; color:black">
-                                @item.Name, @item.Description
+                            <a href="/Admin/Products/Details/@item.Id" class="card-title" style="width: 600px;height:150px;text-decoration:none; color:black">
+                                @item.Name @item.Description
                             </a>
                         </li>
                         <li class="list" style="list-style-type:none">
-                            <img src="~/Image/" />
-                            <a href="#" class="card-link" style="font-size:24px;text-decoration:none; color:orange" >В корзину</a>
+                            <form method="post" asp-page="Index" asp-page-handler="AddToCart">
+                                <input type="hidden" name="productid" value="@item.Id" />
+                                <button type="submit" class="card-link text-end" style="text-decoration:none;">
+
+                                    <img src="~/Image/free-icon-wheelchair-7135719.png" width="50" height="50" />
+                                </button>
+                            </form>
+                        </li>
+                        <li class ="list" style="list-style-type:none">
                             <a href="#" class="card-link" style="font-size:24px;text-decoration:none; color:black">@item.Cost₽ </a>
                         </li>
                     </ul>

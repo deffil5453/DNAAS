@@ -26,6 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Pages\Новая папка\" />
     <Folder Include="wwwroot\Image\" />
   </ItemGroup>
 

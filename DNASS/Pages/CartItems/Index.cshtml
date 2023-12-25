@@ -2,3 +2,47 @@
 @model DNASS.Pages.CartItems.IndexModel
 @{
 }
+@foreach (var item in Model.CartItems)
+{
+    <div class="card mb-3 mt-5" style="max-width: 1000px; height:272px; ">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <img src="~/Image/@item.Product.ImgUrl" class="card-img-top" style="width: 335px; height:270px" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group">
+                            <a href="/Admin/Products/Details/@item.Id" class="card-title" style="width: 600px;height:150px;text-decoration:none; color:black">
+                                @item.Product.Name @item.Product.Description
+                            </a>
+                        </li>
+                        <li class="list" style="list-style-type:none">
+                            <form method="post" asp-page-handler="Detete" asp-route-productId="@item.ProductId">
+                                <button type="submit" class="btn-danger" style="text-decoration:none; width:100px">
+                                    Удалить
+                                </button>
+                            </form>
+                            <form method="post" asp-page-handler="AddToOrder" asp-route-productId="@item.ProductId">
+                                <button type="submit" class="btn btn-success" style="text-decoration:none; width:150px">
+                                    Добавить в заказ
+                                </button>
+                            </form>
+                        </li>
+                        <li class="list" style="list-style-type:none">
+                            <a href="#" class="card-link" style="font-size:24px;text-decoration:none; color:black">@item.Product.Cost₽ </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<div class="total-price">
+    <p>Общая цена: @Model.totalPrice ₽</p>
+</div>
+<form method="post" asp-page-handler="PlaceOrder">
+    <button type="submit" class="btn btn-primary" style="text-decoration:none; width:200px">
+        Оформить заказ
+    </button>
+</form>

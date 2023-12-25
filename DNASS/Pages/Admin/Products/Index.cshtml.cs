@@ -8,17 +8,21 @@ using Microsoft.EntityFrameworkCore;
 using DNASS.Data;
 using DNASS.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis;
 
 namespace DNASS.Pages.Admin.Products
 {
     [Authorize(Roles ="Admin")]
     public class IndexModel : PageModel
     {
-        private readonly DNASS.Data.DNASSDbContext _context;
+        private readonly DNASSDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public IndexModel(DNASS.Data.DNASSDbContext context)
+        public IndexModel(DNASSDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IList<Product> Product { get;set; } = default!;
@@ -26,6 +30,18 @@ namespace DNASS.Pages.Admin.Products
         public async Task OnGetAsync()
         {
             Product = await _context.Products.ToListAsync();
+        }
+        public async Task<IActionResult> OnPostAddToCart(Guid productid)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var cartitem = new CartItem
+            {
+                ProductId = productid,
+                UserId = user.Id
+            };
+            _context.CartItems.Add(cartitem);
+            await _context.SaveChangesAsync();
+            return RedirectToPage("/Admin/Products/Index");
         }
     }
 }
