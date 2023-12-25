@@ -1,0 +1,42 @@
+﻿@page
+@model DNASS.Pages.Admin.Products.IndexModel
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+@foreach (var item in Model.Product)
+{
+    <div class="card mb-3" style="max-width: 800px;">
+        <div class="row g-5">
+
+            <div class="col-md-4">
+                <img src="~/Image/@item.ImgUrl" class="card-img-top" style="width: 275px" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-end">
+                        <div>
+                            <p class="card-title">
+                                @item.Name
+                            </p>
+                        </div>
+                        <div>
+                            <form method="post" asp-page="Index" asp-page-handler="AddToCart">
+                                <input type="hidden" name="productId" value="@item.Id" />
+                                <button type="submit" class="btn btn-outline-primary">В корзину</button>
+                            </form>
+                        </div>
+                    </div>
+                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-info">Характеристики</a>
+                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Редактировать</a>
+
+                </div>
+
+                <p class="card-text text-muted text-lg-end">
+                    Цена: @item.Cost₽
+                </p>
+            </div>
+        </div>
+    </div>
+}
