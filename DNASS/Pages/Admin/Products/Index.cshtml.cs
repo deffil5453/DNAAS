@@ -34,12 +34,12 @@ namespace DNASS.Pages.Admin.Products
         public async Task<IActionResult> OnPostAddToCart(Guid productid)
         {
             var user = await _userManager.GetUserAsync(User);
-            var cartitem = new CartItem
+            var cartitems = new CartItem
             {
                 ProductId = productid,
                 UserId = user.Id
             };
-            _context.CartItems.Add(cartitem);
+            _context.CartItems.Add(cartitems);
             await _context.SaveChangesAsync();
             return RedirectToPage("/Admin/Products/Index");
         }
