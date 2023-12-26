@@ -11,7 +11,6 @@ namespace DNASS.Pages.CartItems
     {
         private readonly DNASSDbContext _context;
         private readonly UserManager<User> _userManager;
-
         public IndexModel(DNASSDbContext context, UserManager<User> userManager)
         {
             _context = context;
@@ -60,25 +59,24 @@ namespace DNASS.Pages.CartItems
                     {
                         Name = Guid.NewGuid(),
                         DateCreationOrder = DateOnly.FromDateTime(DateTime.Today),
+                        UserId = user.Id,
+                        User = user,
                         OrdersProduct = new List<OrderProduct>()
                         {
                             new OrderProduct()
                             {
                                 ProductId = productId,
                                 ProductCount = 1
-                            }
+                            }                        
                         }
-
                     };
                     _context.Orders.Add(order);
-                    _context.Remove(cartItem);
+                    _context.CartItems.Remove(cartItem);
                     await _context.SaveChangesAsync();
+                    return RedirectToPage("/CartItems/OrderDetails", new {Id = order.Id });
                 }
             }
             return RedirectToPage("/CartItems/Index");
         }
     }
-
-    
-
 }

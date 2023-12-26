@@ -6,92 +6,35 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Cost)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Skidka)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].CategoryId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Product[0].Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Product) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cost)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Skidka)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Name)
-            </td>
-            <td>
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> 
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
 @foreach (var item in Model.Product)
 {
-    <div class="card mb-3" style="max-width: 800px;">
-        <div class="row g-5">
-
-            <div class="col-md-4">
-                <img src="~/Image/@item.ImgUrl" class="card-img-top" style="width: 275px" />
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-end">
-                        <div>
-                            <p class="card-title">
-                                @item.Name
-                            </p>
-                        </div>
-                        <div>
-                            <form method="post" asp-page="Index" asp-page-handler="AddToCart">
-                                <input type="hidden" name="productId" value="@item.Id" />
-                                <button type="submit" class="btn btn-outline-primary">В корзину</button>
-                            </form>
-                        </div>
-                    </div>
-                    <a asp-page="/Details/@item.Id" class="btn btn-outline-info">Характеристики</a>
-                    <a href="/Admin/Products/Edit" asp-route-id="@item.Id" class="btn btn-outline-primary">Редактировать</a>
-
-                </div>
-
-                <p class="card-text text-muted text-lg-end">
-                    Цена: @item.Cost₽
-                </p>
+<div class="card mb-3 mt-5" style="max-width: 1000px; height:272px; ">
+    <div class="row g-5">
+        <div class="col-md-4">
+            <img src="~/Image/@item.ImgUrl" class="card-img-top" style="width: 335px; height:270px" />
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <ul class="list-group">
+                    <li class="list-group">
+                        <a href="/Products/Details/@item.Id" class="card-title" style="width: 600px;height:150px;text-decoration:none; color:black">
+                            @item.Name @item.Description
+                        </a>
+                    </li>
+                    <li class="list" style="list-style-type:none">
+                        <form method="post" asp-page="Index" asp-page-handler="AddToCart">
+                            <input type="hidden" name="productid" value="@item.Id" />
+                            <button type="submit" class="card-link text-end" style="text-decoration:none;">
+                                <img src="~/Image/free-icon-wheelchair-7135719.png" width="50" height="50" />
+                            </button>
+                        </form>
+                    </li>
+                    <li class="list" style="list-style-type:none">
+                        <a href="#" class="card-link" style="font-size:24px;text-decoration:none; color:black">@item.Cost₽ </a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
+</div>
 }

@@ -20,12 +20,14 @@ namespace DNASS.Pages.Admin.Products
         }
 
         public Product Product { get; set; }
-
+        public string CategoryName { get; set; }
         public async Task OnGetAsync(Guid id)
         {
             if (_context.Products != null)
             {
                 Product = await _context.Products.FindAsync(id);
+                var category = await _context.Categories.FindAsync(Product.CategoryId);
+                CategoryName = category.Name;
             }
         }
     }
