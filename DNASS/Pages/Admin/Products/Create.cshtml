@@ -1,48 +1,41 @@
 ﻿@page
 @model DNASS.Pages.Admin.Products.CreateModel
 
-<h4>Product</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="AddProduct.Name" class="control-label"></label>
+                <label asp-for="AddProduct.Name" class="control-label">Имя</label>
                 <input asp-for="AddProduct.Name" class="form-control" />
                 <span asp-validation-for="AddProduct.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AddProduct.Description" class="control-label"></label>
+                <label asp-for="AddProduct.Description" class="control-label">Описание</label>
                 <input asp-for="AddProduct.Description" class="form-control" />
                 <span asp-validation-for="AddProduct.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AddProduct.Cost" class="control-label"></label>
+                <label asp-for="AddProduct.Cost" class="control-label">Цена</label>
                 <input asp-for="AddProduct.Cost" class="form-control" />
                 <span asp-validation-for="AddProduct.Cost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AddProduct.CategoryId" class="control-label"></label>
+                <label asp-for="AddProduct.CategoryId" class="control-label">Категория</label>
                 <select asp-for="AddProduct.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="AddProduct.Skidka" class="control-label"></label>
+                <label asp-for="AddProduct.Skidka" class="control-label">Скидка</label>
                 <input asp-for="AddProduct.Skidka" class="form-control" />
                 <span asp-validation-for="AddProduct.Skidka" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="AddProduct.ImgUrl" class="control-label"></label>
+                <label asp-for="AddProduct.ImgUrl" class="control-label">Фото</label>
                 <input asp-for="AddProduct.ImgUrl" class="form-control" type="file" />
                 <span asp-validation-for="AddProduct.ImgUrl" class="text-danger"></span>
             </div>
-            @* <div class="form-group">
-                <label asp-for="AddProduct.CategotyId" class="control-label"></label>
-                <input asp-for="AddProduct.CategotyId" class="form-control" />
-                <span asp-validation-for="AddProduct.CategotyId" class="text-danger"></span>
-            </div> *@
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Создать" class="btn btn-primary" />
             </div>
         </form>
     </div>

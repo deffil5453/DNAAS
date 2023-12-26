@@ -1,47 +1,61 @@
-﻿@page   "{id}"
+﻿@page "{id}"
 @model DNASS.Pages.Admin.Products.EditModel
-
+@{
+    var message = ViewData["Message"]?.ToString();
+}
 <h4>Product</h4>
 <hr />
+@if (!string.IsNullOrWhiteSpace(message))
+{
+    <div class="alert-success">
+        @message
+    </div>
+}
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div class="form-group">
-                <label asp-for="EditProduct.Name" class="control-label"></label>
+                <label asp-for="EditProduct.Name" class="control-label">Название</label>
                 <input asp-for="EditProduct.Name" class="form-control" />
                 <span asp-validation-for="EditProduct.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EditProduct.Description" class="control-label"></label>
-                <input asp-for="EditProduct.Description" class="form-control" />
+                <label asp-for="EditProduct.Description" class="control-label">Описание</label>
+                <textarea asp-for="EditProduct.Description" class="form-control"></textarea>
                 <span asp-validation-for="EditProduct.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EditProduct.Cost" class="control-label"></label>
-                <input asp-for="EditProduct.Cost" class="form-control" type="number"/>
+                <label asp-for="EditProduct.Cost" class="control-label">Цена</label>
+                <input asp-for="EditProduct.Cost" class="form-control" type="number" />
                 <span asp-validation-for="EditProduct.Cost" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EditProduct.CategoryId" class="control-label"></label>
+                <label asp-for="EditProduct.CategoryId" class="control-label">Категория</label>
                 <select asp-for="EditProduct.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
-                <span asp-validation-for="EditProduct.CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EditProduct.Skidka" class="control-label"></label>
+                <label asp-for="EditProduct.Skidka" class="control-label">Скидка</label>
                 <input asp-for="EditProduct.Skidka" class="form-control" type="number" />
                 <span asp-validation-for="EditProduct.Skidka" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <label asp-for="EditProduct.ImgUrl" class="control-label">Фото</label>
+                <input asp-for="EditProduct.ImgUrl" class="form-control" type="file" />
+                <span asp-validation-for="EditProduct.ImgUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Сохранить" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Index" style="text-decoration:none">Вернуться к списку</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

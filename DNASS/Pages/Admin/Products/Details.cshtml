@@ -2,48 +2,51 @@
 @model DNASS.Pages.Admin.Products.DetailsModel
 
 <div>
-    <h4>Product</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Name)
+            <label>
+                Название
+            </label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Name)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Description)
+            <label>
+                Описание
+            </label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Description)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Cost)
+            <label>
+                Цена
+            </label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Cost)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Skidka)
+            <label>
+                Скидка
+            </label>
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Product.Skidka)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.CategoryId)
+            <label>
+                Категория
+            </label>
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.CategoryId)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Product.Category)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Product.Category.Name)
+            @Html.DisplayFor(model => model.CategoryName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Product.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Product.Id">Редактироровать</a> |
+    <a asp-page="./Index">К списку</a>
 </div>

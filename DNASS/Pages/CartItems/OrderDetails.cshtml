@@ -1,0 +1,36 @@
+﻿@page "{Id}"
+@model DNASS.Pages.CartItems.OrderDetailsModel
+
+@{
+    ViewData["Title"] = "OrderDetails";
+}
+
+<h1>Title</h1>
+
+<h1>
+   Заказчик: @Model.UserFullName
+</h1>
+@foreach (var orderProduct in Model.Order.OrdersProduct)
+{
+    <div class="card mb-3 mt-5" style="max-width: 1000px; height:272px; ">
+        <div class="row g-5">
+            <div class="col-md-4">
+                <img src="~/Image/@orderProduct.Product.ImgUrl" class="card-img-top" style="width: 335px; height:270px" />
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <ul class="list-group">
+                        <li class="list-group">
+                            <a href="/Admin/Products/Details/@orderProduct.Product.Id" class="card-title" style="width: 600px;height:150px;text-decoration:none; color:black">
+                                @orderProduct.Product.Name @orderProduct.Product.Description
+                            </a>
+                        </li>
+                        <li class="list" style="list-style-type:none">
+                            <a href="#" class="card-link" style="font-size:24px;text-decoration:none; color:black">@orderProduct.Product.Cost₽ </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}

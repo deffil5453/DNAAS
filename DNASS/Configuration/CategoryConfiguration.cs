@@ -8,8 +8,9 @@ namespace DNASS.Configuration
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.HasOne(category => category.Product)
+            builder.HasMany(category => category.Product)
                 .WithOne(product => product.Category)
+                .HasForeignKey(product => product.CategoryId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

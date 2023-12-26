@@ -1,41 +1,37 @@
 ﻿@page
 @model DNASS.Pages.Admin.Products.IndexModel
-
 <p>
-    <a asp-page="Create" class="btn btn-dark">Create New</a>
+    <a asp-page="Create" class="btn btn-success">Добавить товар</a>
 </p>
-
 @foreach (var item in Model.Product)
 {
-    <div class="card mb-3 mt-5" style="max-width: 800px; ">
+    <div class="card mb-3 mt-5" style="max-width: 1000px; height:272px; ">
         <div class="row g-5">
-
             <div class="col-md-4">
-                <img src="~/Image/@item.ImgUrl" class="card-img-top" style="width: 235px; height:170px" />
+                <img src="~/Image/@item.ImgUrl" class="card-img-top" style="width: 335px; height:270px" />
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-end">
-                        <div>
-                            <p class="card-title" style="width: 275px;">
-                                @item.Name, @item.Description
-                            </p>
-                        </div>
-                        <div>
+                    <ul class="list-group">
+                        <li class="list-group">
+                            <a href="/Admin/Products/Details/@item.Id" class="card-title" style="width: 600px;height:150px;text-decoration:none; color:black">
+                                @item.Name @item.Description
+                            </a>
+                        </li>
+                        <li class="list" style="list-style-type:none">
                             <form method="post" asp-page="Index" asp-page-handler="AddToCart">
-                                <input type="hidden" name="productId" value="@item.Id" />
-                                <button type="submit" class="btn btn-outline-primary">В корзину</button>
+                                <input type="hidden" name="productid" value="@item.Id" />
+                                <button type="submit" class="card-link text-end" style="text-decoration:none;">
+
+                                    <img src="~/Image/free-icon-wheelchair-7135719.png" width="50" height="50" />
+                                </button>
                             </form>
-                        </div>
-                    </div>
-                    <a href="/Admin/Products/Details/@item.Id" class="btn btn-outline-info">Характеристики</a>
-                    <a href="/Admin/Products/Edit/@item.Id" class="btn btn-outline-primary">Редактировать</a>
-
+                        </li>
+                        <li class ="list" style="list-style-type:none">
+                            <a href="#" class="card-link" style="font-size:24px;text-decoration:none; color:black">@item.Cost₽ </a>
+                        </li>
+                    </ul>
                 </div>
-
-                <p class="card-text text-muted text-lg-end">
-                    Цена: @item.Cost₽
-                </p>
             </div>
         </div>
     </div>
